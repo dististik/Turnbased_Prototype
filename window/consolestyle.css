@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css?family=Proza+Libre|Fira+Mono');
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#app {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  input {
+    padding: 1rem 1rem;
+    font-size: 2rem;
+    border: 0;
+    border-radius: 3px;
+    background: #fff;
+  }
+
+}
+
+h1 {
+  font-family: 'Proza Libre', sans-serif;
+  color: #fff;
+  font-weight: 300;
+}
+
+input[type="color"]{
+  width:40px;
+  border:1px solid black;
+  margin:0px;
+  padding:0px !important;
+  height:40px;
+}
+.line {
+  color: white;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+.line_input {
+  background-color: black;
+  border-color: black;
+  color: white;
+  width: 90%;
+}

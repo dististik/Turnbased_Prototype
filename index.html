@@ -2,18 +2,59 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Hello World!</title>
+    <title>Turnbased Prototype</title>
+    <link rel="stylesheet" href="./window/consolestyle.css">
   </head>
   <body>
-    <h1>Hello World!</h1>
-    <!-- All of the Node.js APIs are available in this renderer process. -->
-    We are using Node.js <script>document.write(process.versions.node)</script>,
-    Chromium <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
-
+    <div id="app" v-bind:style="{ backgroundColor: color}">
+      <br>
+      <br>
+      <div style="display: none" id="templateline">
+        <div class="line">
+          λ <input class="line_input" id="textbox">
+        </div>
+      </div>
+    </div>
     <script>
-      // You can also require other files to run in this process
-      require('./renderer.js')
+      require('./renderer.js');
+      require('./window/layout.js');
+      //require('./window/func.js');
+      var $ = require("jquery");
+    </script>
+    <script>
+    const node = document.getElementsByClassName("line_input")[0];
+    node.addEventListener("keyup", function(event) {
+        if (event.key === "Enter") {
+            newLine();
+        }
+    });
+
+
+
+    //Function to create new lines in the console
+    function newLine() {
+      template = document.getElementById('templateline');
+      app = document.getElementById('app');
+      lines = document.getElementsByClassName('line_input');
+      //Create new line
+      $('#templateline').children().clone().appendTo('#app');
+      //Disable previous lines
+      if (document.getElementsByClassName('line_input').length > 2) {
+        lines = document.getElementsByClassName('line_input');
+        lines[lines.length - 2].disabled = true;
+      }
+      //Select the new line
+      lines[lines.length - 1].select();
+    }
+
+    $(document).keyup(function (e) {
+      if ($(".input1:focus") && (e.keyCode === 13)) {
+         newLine();
+      }
+    });
+
+    //Automatically create the first line
+    newLine();
     </script>
   </body>
 </html>
